@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+	<mat-card>
+		<mat-card-title>Register</mat-card-title>
+
+		<div fxLayout="column">
+
+			<form [formGroup]="registerForm" (ngSubmit)="register()" fxLayout="column" fxFlexFill fxLayoutGap="10px">
+				<div class="empty-row"></div>
+
+				<formly-form [form]="registerForm" [fields]="fields" [model]="model"></formly-form>
+				
+				<button mat-raised-button color="primary" type="submit" aria-label="register">Register</button>
+			</form>
+
+			<div fxLayout="column" fxLayoutAlign="center" nxLayoutGap="10px" class="footer">
+				<a mat-button [routerLink]="['/log-in']">Already have an account?</a>
+			</div>
+		</div>
+	</mat-card>
+</div>

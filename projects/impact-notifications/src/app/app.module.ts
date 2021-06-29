@@ -12,10 +12,14 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { ShellModule } from './shell/shell.module';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     FormlyMaterialModule,
     FlexLayoutModule,
-    AuthModule
+    AuthModule,
+    ShellModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -50,7 +50,7 @@ export class LogInComponent implements OnInit {
 			this.auth.logIn(data.username, data.password).subscribe(res => {
 				console.log(res);
 				if (res.authenticated) {
-					// this.postLogIn();
+					this.postLogIn();
 					console.log(res);
 				}
 				else {
@@ -61,7 +61,7 @@ export class LogInComponent implements OnInit {
 	}
 
 	postLogIn(): void {
-		this.router.navigate(['/dashboard']);
+		this.router.navigate(['/shell']);
 	}
 
 	tryAgain(): void {

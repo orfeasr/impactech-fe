@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
 				console.log(res);
 				if (res.staus === 'SUCCESS') { // typo in the mock.config response
 					console.log(res);
-					// this.postRegister();
+					this.postRegister();
 				}
 				else {
 					this.tryAgain(res.message);
@@ -77,7 +77,7 @@ export class RegisterComponent implements OnInit {
 	}
 
 	postRegister(): void {
-		this.router.navigate(['/dashboard']);
+		this.router.navigate(['/shell']);
 	}
 
 	tryAgain(message: string): void {

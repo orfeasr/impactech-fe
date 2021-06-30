@@ -6,8 +6,22 @@ import { Observable } from 'rxjs';
 	providedIn: 'root'
 })
 export class AuthService {
+	private UserDetails = {
+		email: '',
+		password: '',
+		username: ''
+	};
+
 	constructor(private http: HttpClient) {}
 
+
+	get userDetails() {
+		return this.UserDetails;
+	}
+
+	set userDetails(profile) {
+		this.UserDetails = profile;
+	}
 
 	register(username, password, email): Observable<any> {
 		const url = `https://localhost:42000/register`;

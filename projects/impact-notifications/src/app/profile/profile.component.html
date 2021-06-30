@@ -3,4 +3,20 @@
         <div>Profile</div>
     </mat-toolbar-row>
 </mat-toolbar>
-<p>profile works!</p>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <mat-card>
+        <mat-card-title>User profile</mat-card-title>
+
+        <div fxLayout="column">
+
+            <form [formGroup]="profileForm"  fxLayout="column" fxFlexFill fxLayoutGap="10px">
+                <div class="empty-row"></div>
+
+                <formly-form [form]="profileForm" [fields]="fields" [model]="model"></formly-form>
+
+                <button mat-raised-button color="primary" type="submit" aria-label="register">Edit</button>
+            </form>
+
+        </div>
+    </mat-card>
+</div>

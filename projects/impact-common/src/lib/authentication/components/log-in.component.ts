@@ -50,6 +50,7 @@ export class LogInComponent implements OnInit {
 			this.auth.logIn(data.username, data.password).subscribe(res => {
 				console.log(res);
 				if (res.authenticated) {
+					this.auth.userDetails = res.userDetails;
 					this.postLogIn();
 					console.log(res);
 				}

@@ -1,8 +1,14 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" opened>
         <mat-nav-list>
-            <a mat-list-item [routerLink]=" ['./dashboard/'] " routerLinkActive="active">
+            <a mat-list-item [routerLink]="'./dashboard/'" routerLinkActive="active">
                 <span mat-line>Dashboard</span>
+            </a>
+            <a mat-list-item [routerLink]="'./profile/'" routerLinkActive="active">
+                <span mat-line>Profile</span>
+            </a>
+            <a mat-list-item [routerLink]="'./inbox/'" routerLinkActive="active">
+                <span mat-line>Inbox</span>
             </a>
         </mat-nav-list>
     </mat-sidenav>

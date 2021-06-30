@@ -5,6 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ShellComponent } from './shell.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { ProfileComponent } from '../profile/profile.component';
+import { InboxComponent } from '../inbox/inbox.component';
+
 
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -16,6 +19,9 @@ const routes: Routes = [
 		path: 'shell', component: ShellComponent,
 		children: [
 			{ path: '', component: DashboardComponent, pathMatch: 'full' },
+			{ path: 'dashboard', component: DashboardComponent },
+			{ path: 'profile', component: ProfileComponent },
+			{ path: 'inbox', component: InboxComponent },
 		]
 	},
 ];
@@ -24,6 +30,8 @@ const routes: Routes = [
 	declarations: [
 		ShellComponent,
 		DashboardComponent,
+		ProfileComponent,
+		InboxComponent
 	],
 	imports: [
 		CommonModule,

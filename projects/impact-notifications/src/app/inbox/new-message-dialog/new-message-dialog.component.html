@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Send a message</h1>
+<form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
+</form>
+<div mat-dialog-actions>
+    <button mat-raised-button color='primary' [mat-dialog-close]='model' [disabled]="!form.valid" >Send message</button>
+</div>

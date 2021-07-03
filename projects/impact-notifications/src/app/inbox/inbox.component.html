@@ -1,6 +1,18 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <div>Inbox</div>
+    <mat-toolbar-row fxLayoutAlign="space-between center">
+        <span>Inbox</span>
+        <button mat-raised-button color="accent" (click)=openDialog()>
+            New message
+        </button>
     </mat-toolbar-row>
 </mat-toolbar>
-<p>inbox works!</p>
+<mat-accordion>
+    <mat-expansion-panel *ngFor='let message of messages'>
+        <mat-expansion-panel-header>
+            <mat-panel-description>
+               {{ message | slice:0:50}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{ message }}</p>
+    </mat-expansion-panel>
+</mat-accordion>

@@ -14,5 +14,35 @@
         <p>{{ message }}</p>
     </mat-expansion-panel>
 </mat-accordion>
-<p>dashboard works!</p>
 
+<h1 mat-subheader>Messages per User</h1>
+<div fxLayoutAlign="space-between center">
+    <ngx-charts-bar-vertical 
+        [view]=""
+        [results]="notificationsData"
+        [xAxisLabel]="'Users'"
+        [legendTitle]="'Product Sale Chart'"
+        [yAxisLabel]="'Messages'"
+        [legend]="false"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [gradient]="false">
+    </ngx-charts-bar-vertical>
+</div>
+
+<h1 mat-subheader>Frequent Users</h1>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef> User </th>
+        <td mat-cell *matCellDef="let data">{{ data.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="messages">
+        <th mat-header-cell *matHeaderCellDef> Messages sent </th>
+        <td mat-cell *matCellDef="let data"> {{ data.value }} </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+</table>

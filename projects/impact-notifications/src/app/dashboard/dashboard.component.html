@@ -3,4 +3,16 @@
         <div>Dashboard</div>
     </mat-toolbar-row>
 </mat-toolbar>
+<h1 mat-subheader>Recent messages</h1>
+<mat-accordion>
+    <mat-expansion-panel *ngFor='let message of recentMessages'>
+        <mat-expansion-panel-header>
+            <mat-panel-description>
+                {{ message | slice:0:50}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{ message }}</p>
+    </mat-expansion-panel>
+</mat-accordion>
 <p>dashboard works!</p>
+

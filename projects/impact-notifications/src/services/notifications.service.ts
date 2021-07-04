@@ -24,5 +24,50 @@ export class NotificationsService {
     const url = `https://localhost:42000/sendNotification`;
     return this.http.post<any>(url, notification);
   }
+
+  updateSenderRecepient(userSender, userRecipient, msg) {
+    const notifications = localStorage.getItem('senders-recepients')
+    if (notifications != null) {
+      const userNotifications = JSON.parse(notifications);
+      const indexSender = userNotifications.findIndex(x => x.sender === userSender);
+      if (indexSender > -1) {
+        const indexRecepient = userNotifications[indexSender].notifications.findIndex(x => x.recipient === userRecipient);
+        if (indexRecepient > -1) {
+          userNotifications[indexSender].notifications[indexRecepient].messages.push(msg);
+
+        } else {
+          userNotifications[indexSender].notifications.push(
+              {
+                recipient: userRecipient,
+                messages: [msg]
+              }
+          );
+        }
+
+      } else {
+        userNotifications.push({
+          sender: userSender,
+          notifications: [
+            {
+              recipient: userRecipient,
+              messages: [msg]
+            }
+          ]
+        });
+      }
+      localStorage.setItem('senders-recepients', JSON.stringify(userNotifications));
+    } else {
+      localStorage.setItem('senders-recepients', JSON.stringify([{
+        sender: userSender,
+        notifications: [
+          {
+            recipient: userRecipient,
+            messages: [msg]
+          }
+        ]
+      }]));
+    }
+
+  }
 }
 

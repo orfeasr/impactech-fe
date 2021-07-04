@@ -30,10 +30,12 @@ export class InboxComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(NewMessageDialogComponent);
+    const sender = this.auth.userDetails.username;
     dialogRef.afterClosed().subscribe(result => {
       this.notifications.sendMessage(result.username, result.message).subscribe(
         res => {
           console.log(res);
+          this.notifications.updateSenderRecepient(sender, result.username, result.message)
         }
       );
     });

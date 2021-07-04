@@ -3,7 +3,7 @@
         <div>Dashboard</div>
     </mat-toolbar-row>
 </mat-toolbar>
-<h1 mat-subheader>Recent messages</h1>
+<h1 mat-subheader>{{ 'dashboardHeaders.recent' | translate}}</h1>
 <mat-accordion>
     <mat-expansion-panel *ngFor='let message of recentMessages'>
         <mat-expansion-panel-header>
@@ -15,7 +15,7 @@
     </mat-expansion-panel>
 </mat-accordion>
 
-<h1 mat-subheader>Messages per User</h1>
+<h1 mat-subheader>{{ 'dashboardHeaders.chart' | translate}}</h1>
 <div fxLayoutAlign="space-between center">
     <ngx-charts-bar-vertical 
         [view]=""
@@ -32,7 +32,7 @@
     </ngx-charts-bar-vertical>
 </div>
 
-<h1 mat-subheader>Frequent Users</h1>
+<h1 mat-subheader>{{ 'dashboardHeaders.frequent' | translate}}</h1>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="user">
         <th mat-header-cell *matHeaderCellDef> User </th>

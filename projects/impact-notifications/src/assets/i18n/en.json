@@ -1,0 +1,7 @@
+{
+    "dashboardHeaders": {
+        "recent": "Recent messages",
+        "chart": "Messages per User",
+        "frequent": "Frequent Users"
+    }
+}

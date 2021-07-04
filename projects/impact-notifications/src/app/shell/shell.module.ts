@@ -28,7 +28,13 @@ import { MatTableModule } from '@angular/material/table';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+export function HttpLoaderFactory(http: HttpClient) {
+	return new TranslateHttpLoader(http);
+}
 
 
 
@@ -70,7 +76,16 @@ const routes: Routes = [
 		MatTableModule,
 		FormlyModule.forRoot(),
 		FormlyMaterialModule,
-		NgxChartsModule
+		NgxChartsModule,
+		HttpClientModule,
+		TranslateModule.forRoot({
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient]
+			}
+		})
+
 	],
 	providers: []
 })

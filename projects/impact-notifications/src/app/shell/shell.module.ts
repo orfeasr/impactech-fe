@@ -8,6 +8,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { InboxComponent } from '../inbox/inbox.component';
 import { NewMessageDialogComponent } from '../inbox/new-message-dialog/new-message-dialog.component';
+import { AuthGuard } from '../../services/auth.guard';
 
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -34,6 +35,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 const routes: Routes = [
 	{
 		path: 'shell', component: ShellComponent,
+		canActivate: [AuthGuard],
 		children: [
 			{ path: '', component: DashboardComponent, pathMatch: 'full' },
 			{ path: 'dashboard', component: DashboardComponent },

@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
     this.notifications.getMessages(user).subscribe(
       res => {
         const totalNumOfMessages = res.length;
-        this.recentMessages = res.slice(totalNumOfMessages - 10, totalNumOfMessages);
+        this.recentMessages = res.slice(totalNumOfMessages - 10, totalNumOfMessages).reverse();
       }
     );
     this.notificationsData = this.createNotificationsData();

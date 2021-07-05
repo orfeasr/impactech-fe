@@ -25,6 +25,15 @@ export class NotificationsService {
     return this.http.post<any>(url, notification);
   }
 
+  deleteMessage(username, index): Observable<any> {
+    const body = {
+      username,
+      index
+    }
+    const url = `https://localhost:42000/deleteMessage`;
+    return this.http.request('delete', url, {body});
+  }
+
   updateSenderRecepient(userSender, userRecipient, msg) {
     const notifications = localStorage.getItem('senders-recepients')
     if (notifications != null) {

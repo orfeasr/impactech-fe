@@ -7,11 +7,14 @@
     </mat-toolbar-row>
 </mat-toolbar>
 <mat-accordion>
-    <mat-expansion-panel *ngFor='let message of messages'>
+    <mat-expansion-panel *ngFor='let message of messages; index as i;'>
         <mat-expansion-panel-header>
             <mat-panel-description>
                {{ message | slice:0:50}}
             </mat-panel-description>
+            <button mat-icon-button color='warn' (click)='delete(message, i)' aria-label="delete">
+                <mat-icon>delete</mat-icon>
+            </button>
         </mat-expansion-panel-header>
         <p>{{ message }}</p>
     </mat-expansion-panel>

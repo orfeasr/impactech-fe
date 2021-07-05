@@ -21,6 +21,11 @@ export default {
         'https://localhost:42000/updateUser': {
             handler: updateUser
         }
+    },
+    DELETE: {
+        'https://localhost:42000/deleteMessage': {
+            handler: deleteMessage
+        }
     }
 }
 function getNotifications(params) {
@@ -148,6 +153,32 @@ function updateUser(params) {
         status: 200, body: {
             status: 'SUCCESS',
             message: 'User profile updated'
+        }
+
+    }));
+}
+
+function deleteMessage(params) {
+    const recepient = params.username;
+    const msgIndex = params.index;
+    const notifications = localStorage.getItem('users-notifications');
+    if (notifications != null) {
+        const userNotifications = JSON.parse(notifications);
+        const index = userNotifications.findIndex(x => x.username === recepient);
+        if ((index > -1) && (msgIndex > -1)) {
+            userNotifications[index].notifications.splice(msgIndex, 1);
+        } else {
+            console.log('message or recipient not found');
+        }
+        localStorage.setItem('users-notifications', JSON.stringify(userNotifications));
+    } else {
+        console.log('no messages');
+    }
+
+    return of(new HttpResponse({
+        status: 200, body: {
+            status: 'SUCCESS',
+            message: 'Message Deleted'
         }
 
     }));

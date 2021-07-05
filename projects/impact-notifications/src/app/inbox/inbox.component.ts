@@ -41,4 +41,14 @@ export class InboxComponent implements OnInit {
     });
   }
 
+  delete(message, index) {
+    const recepient = this.auth.userDetails.username;
+    this.notifications.deleteMessage(recepient, index).subscribe(
+      res => {
+        console.log(res);
+        this.messages.splice(index, 1);
+      }
+    );
+  }
+
 }

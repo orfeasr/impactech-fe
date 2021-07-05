@@ -25,6 +25,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -74,6 +76,7 @@ const routes: Routes = [
 		MatDialogModule,
 		MatInputModule,
 		MatTableModule,
+		MatIconModule,
 		FormlyModule.forRoot(),
 		FormlyMaterialModule,
 		NgxChartsModule,

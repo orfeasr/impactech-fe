@@ -16,6 +16,11 @@ export default {
         'https://localhost:42000/sendNotification': {
             handler: sendNotifications
         }
+    },
+    PUT: {
+        'https://localhost:42000/updateUser': {
+            handler: updateUser
+        }
     }
 }
 function getNotifications(params) {
@@ -122,5 +127,29 @@ function login(body) {
         }
     }));
 
+}
+
+function updateUser(params) {
+    const users = localStorage.getItem('registered-users');
+    if (users != null) {
+        const registeredUsers = JSON.parse(users);
+        const index = registeredUsers.findIndex(x => x.username === params.curentUser);
+        if (index > -1) {
+            registeredUsers[index] = params.profile;
+            localStorage.setItem('registered-users', JSON.stringify(registeredUsers));
+        } else {
+           console.log('user not found');
+        }
+    } else {
+        console.log('no users for now');
+    }
+
+    return of(new HttpResponse({
+        status: 200, body: {
+            status: 'SUCCESS',
+            message: 'User profile updated'
+        }
+
+    }));
 }
 

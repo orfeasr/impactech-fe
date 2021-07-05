@@ -9,12 +9,14 @@
 
         <div fxLayout="column">
 
-            <form [formGroup]="profileForm"  fxLayout="column" fxFlexFill fxLayoutGap="10px">
+            <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" fxLayout="column" fxFlexFill fxLayoutGap="10px">
                 <div class="empty-row"></div>
 
-                <formly-form [form]="profileForm" [fields]="fields" [model]="model"></formly-form>
+                <formly-form [form]="profileForm" [fields]="fields" [options]="options" [model]="model"></formly-form>
 
-                <button mat-raised-button color="primary" type="submit" aria-label="register">Edit</button>
+                <button *ngIf='!isEditable' mat-raised-button color="primary" (click)='editProfile()' aria-label="edit">Edit</button>
+                <button *ngIf='isEditable' mat-raised-button color="accent" type="submit" aria-label="reupdate">Update Profile</button>
+                <button *ngIf='isEditable' mat-raised-button color="warn" (click)='cancelEditingProfile()' aria-label="cancel">Cancel</button>                
             </form>
 
         </div>

@@ -1,7 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { AuthService } from '../../../../impact-common/src/lib/authentication/auth.service';
+import { ProfileService } from '../../services/profile.service';
+
 
 
 @Component({
@@ -16,6 +18,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     password: '',
     email: ''
   };
+  options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [
     {
       key: 'username',
@@ -52,8 +55,12 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       }
     }
   ];
+  isEditable = false;
 
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService,
+    private profile: ProfileService
+    ) { }
 
   ngOnInit(): void {
     this.model = this.auth.userDetails;
@@ -62,6 +69,28 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.profileForm.disable();
+  }
+
+  editProfile() {
+    this.isEditable = true;
+    this.profileForm.enable();
+  }
+
+  cancelEditingProfile() {
+    this.isEditable = false;
+    this.options.resetModel();
+    this.profileForm.disable();
+  }
+
+  updateProfile() {
+    const user = this.auth.userDetails.username;
+    this.profile.updateProfile(user, this.model).subscribe(
+      res => {
+        console.log(res);
+        this.isEditable = false;
+        this.profileForm.disable();
+      }
+    );
   }
 
 }
